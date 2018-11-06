@@ -1,0 +1,9 @@
+.market-picker,
+.date-range-picker {
+  width: 100%;
+}
+
+.data-params-input {
+  width: 600px;
+  margin: 20px;
+}

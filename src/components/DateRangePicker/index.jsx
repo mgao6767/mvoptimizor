@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { DatePicker } from "antd";
+import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import store from "../../store";
 import { updateDateRange } from "../../actions/updateDateRange";
@@ -14,7 +15,7 @@ class DateRangePicker extends Component {
     this.disabledDate = this.disabledDate.bind(this);
   }
   onChange(dates) {
-    store.dispatch(updateDateRange(dates));
+    this.props.update(dates);
   }
   disabledDate(current) {
     // Can not select days after today and today
@@ -53,4 +54,13 @@ function mapStateToProps(state) {
   return { start_date: state.dateRange[0], end_date: state.dateRange[1] };
 }
 
-export default connect(mapStateToProps)(DateRangePicker);
+function mapDispatchToProps(dispatch) {
+  return {
+    update: bindActionCreators(updateDateRange, dispatch)
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(DateRangePicker);

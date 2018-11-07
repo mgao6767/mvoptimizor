@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Radio } from "antd";
+import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import store from "../../store";
 import { updateFrequency } from "../../actions/updateFrequency";
 
 class FrequencyPicker extends Component {
@@ -12,7 +12,7 @@ class FrequencyPicker extends Component {
 
   onChange(e) {
     e.preventDefault();
-    store.dispatch(updateFrequency(e.target.value));
+    this.props.update(e.target.value);
   }
 
   render() {
@@ -35,4 +35,13 @@ const mapStateToProps = state => ({
   freq: state.frequency
 });
 
-export default connect(mapStateToProps)(FrequencyPicker);
+const mapDispatchToProps = dispatch => {
+  return {
+    update: bindActionCreators(updateFrequency, dispatch)
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(FrequencyPicker);

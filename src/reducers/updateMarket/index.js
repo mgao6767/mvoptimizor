@@ -1,5 +1,4 @@
 import { UPDATE_MARKET } from "../../constants/action-types";
-
 const initialState = "NYSE";
 
 export default function updateMarket(state = initialState, { type, payload }) {

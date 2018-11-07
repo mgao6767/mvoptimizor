@@ -11,11 +11,11 @@ const steps = [
     content: <DataParamsInput />
   },
   {
-    title: "Second",
+    title: "Optimization",
     content: "Second-content"
   },
   {
-    title: "Last",
+    title: "Results",
     content: "Last-content"
   }
 ];
@@ -49,9 +49,14 @@ class StepProgress extends Component {
         </Steps>
         <div className="steps-content">{steps[current].content}</div>
         <div className="steps-action">
-          {current < steps.length - 1 && (
+          {current < steps.length - 2 && (
             <Button type="primary" onClick={() => this.next()}>
               Next
+            </Button>
+          )}
+          {current === steps.length - 2 && (
+            <Button type="primary" onClick={() => this.next()}>
+              Start
             </Button>
           )}
           {current === steps.length - 1 && (

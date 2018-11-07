@@ -5,5 +5,7 @@
 
 .data-params-input {
   width: 600px;
-  margin: 20px;
+  height: 100%;
+  border: none;
+  text-align: left;
 }

@@ -19,3 +19,7 @@
   margin-right: 100px;
   margin-top: 50px;
 }
+
+.ant-steps.ant-steps-horizontal.ant-steps-label-horizontal {
+  height: 50px;
+}

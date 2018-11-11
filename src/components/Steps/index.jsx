@@ -1,18 +1,19 @@
 import React, { Component } from "react";
 import { Steps, Button, message } from "antd";
 import DataParamsInput from "../DataParamsInput";
+import OptimizationParamsInput from "../OptimizationParamsInput";
 import "./style.css";
 
 const Step = Steps.Step;
 
 const steps = [
   {
-    title: "Data Input",
+    title: "Data",
     content: <DataParamsInput />
   },
   {
     title: "Optimization",
-    content: "Second-content"
+    content: <OptimizationParamsInput />
   },
   {
     title: "Results",
@@ -49,6 +50,11 @@ class StepProgress extends Component {
         </Steps>
         <div className="steps-content">{steps[current].content}</div>
         <div className="steps-action">
+          {current > 0 && (
+            <Button style={{ marginRight: 8 }} onClick={() => this.prev()}>
+              Previous
+            </Button>
+          )}
           {current < steps.length - 2 && (
             <Button type="primary" onClick={() => this.next()}>
               Next
@@ -65,11 +71,6 @@ class StepProgress extends Component {
               onClick={() => message.success("Processing complete!")}
             >
               Done
-            </Button>
-          )}
-          {current > 0 && (
-            <Button style={{ marginLeft: 8 }} onClick={() => this.prev()}>
-              Previous
             </Button>
           )}
         </div>

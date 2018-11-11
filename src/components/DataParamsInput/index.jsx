@@ -12,13 +12,13 @@ class DataParamsInput extends Component {
       <Card className="data-params-input">
         {/* <Divider orientation="left">Select a market</Divider>
         <MarketPicker /> */}
-        <Divider orientation="left">Select assets</Divider>
+        <Divider orientation="left">Target Assets</Divider>
         <AssetsPicker />
 
-        <Divider orientation="left">Select data period</Divider>
+        <Divider orientation="left">Data Period</Divider>
         <DateRangePicker />
 
-        <Divider orientation="left">Select data frequency</Divider>
+        <Divider orientation="left">Data Frequency</Divider>
         <FrequencyPicker />
       </Card>
     );

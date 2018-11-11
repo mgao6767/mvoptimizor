@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Switch } from "antd";
+import { Switch, Icon } from "antd";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { updateLongOnly } from "../../actions/updateLongOnly";
@@ -13,15 +13,21 @@ class LongOnlySwitch extends Component {
     this.props.update(e);
   }
   render() {
-    return <Switch defaultChecked onChange={this.onChange} />;
+    return (
+      <Switch
+        className="long-only-switch"
+        defaultChecked
+        checkedChildren={<Icon type="check" />}
+        unCheckedChildren={<Icon type="close" />}
+        onChange={this.onChange}
+      />
+    );
   }
 }
 
 const mapDispatchToProps = dispatch => {
-  return dispatch => {
-    {
-      update: bindActionCreators(updateLongOnly, dispatch);
-    }
+  return {
+    update: bindActionCreators(updateLongOnly, dispatch)
   };
 };
 

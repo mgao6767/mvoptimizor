@@ -4,9 +4,9 @@
 }
 
 .data-params-input {
-  width: 600px;
-  height: 100%;
+  /* width: 600px;
+  height: 100%; */
   border: none;
-  text-align: left;
+  text-align: center;
   background: transparent;
 }

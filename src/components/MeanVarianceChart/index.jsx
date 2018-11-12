@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import Plot from "react-plotly.js";
 
 class MeanVarianceChart extends Component {
@@ -14,7 +15,7 @@ class MeanVarianceChart extends Component {
           marker: { color: "red" }
         }
       ],
-      layout: { title: "ASDOSIJDOAISJD" },
+      layout: { title: "Expected Return - Standard Deviation Distribution" },
       frames: [],
       config: {}
     };
@@ -34,4 +35,8 @@ class MeanVarianceChart extends Component {
   }
 }
 
-export default MeanVarianceChart;
+const mapStateToProps = state => ({
+  result: state.optimizationResults
+});
+
+export default connect(mapStateToProps)(MeanVarianceChart);

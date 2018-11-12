@@ -25,12 +25,10 @@ export const postOptimizationParams = params => {
       .then(res => res.json())
       .then(data => {
         console.log("Optimization Results:", data);
-        return dispatch => {
-          dispatch({
-            type: RECEIVED_OPTIMIZATION_RESULTS,
-            payload: data
-          });
-        };
+        dispatch({
+          type: RECEIVED_OPTIMIZATION_RESULTS,
+          payload: data
+        });
       })
       .then(
         dispatch({

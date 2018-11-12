@@ -11,7 +11,8 @@ export const postOptimizationParams = params => {
       json: true,
       start_date: params["dateRange"][0],
       end_date: params["dateRange"][1],
-      tickers: params["selectedAssets"]
+      tickers: params["selectedAssets"],
+      long_only: params["longOnly"]
     })
   };
   console.log("Optimization Parameters:", init);

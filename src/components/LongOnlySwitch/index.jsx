@@ -16,7 +16,7 @@ class LongOnlySwitch extends Component {
     return (
       <Switch
         className="long-only-switch"
-        defaultChecked
+        defaultChecked={this.props.longOnly}
         checkedChildren={<Icon type="check" />}
         unCheckedChildren={<Icon type="close" />}
         onChange={this.onChange}
@@ -25,6 +25,10 @@ class LongOnlySwitch extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  longOnly: state.longOnly
+});
+
 const mapDispatchToProps = dispatch => {
   return {
     update: bindActionCreators(updateLongOnly, dispatch)
@@ -32,6 +36,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(LongOnlySwitch);

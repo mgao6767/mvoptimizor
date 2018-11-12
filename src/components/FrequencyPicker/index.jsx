@@ -5,20 +5,15 @@ import { connect } from "react-redux";
 import { updateFrequency } from "../../actions/updateFrequency";
 
 class FrequencyPicker extends Component {
-  constructor(props) {
-    super(props);
-    this.onChange = this.onChange.bind(this);
-  }
-
-  onChange(e) {
+  onChange = e => {
     e.preventDefault();
     this.props.update(e.target.value);
-  }
+  };
 
   render() {
     return (
       <Radio.Group
-        defaultValue={"daily"}
+        defaultValue={this.props.freq}
         //buttonStyle="solid"
         onChange={this.onChange}
       >
@@ -32,7 +27,7 @@ class FrequencyPicker extends Component {
 }
 
 const mapStateToProps = state => ({
-  freq: state.frequency
+  freq: state.freq
 });
 
 const mapDispatchToProps = dispatch => {

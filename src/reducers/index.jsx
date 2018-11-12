@@ -6,6 +6,8 @@ import updateMarket from "./updateMarket";
 import updateSelectedAssets from "./updateSelectedAssets";
 import updateExpectedReturnMethod from "./updateExpectedReturnMethod";
 import updateCovarianceMethod from "./updateCovarianceMethod";
+import waitingOptimizationResults from "./optimization/waitingResults";
+import receivedOptimizationResults from "./optimization/receivedResults";
 
 const rootReducer = combineReducers({
   dateRange: updateDateRange,
@@ -14,7 +16,9 @@ const rootReducer = combineReducers({
   market: updateMarket,
   selectedAssets: updateSelectedAssets,
   expectedReturnMethod: updateExpectedReturnMethod,
-  covarianceMethod: updateCovarianceMethod
+  covarianceMethod: updateCovarianceMethod,
+  waitingResults: waitingOptimizationResults,
+  optimizationResults: receivedOptimizationResults
 });
 
 export default rootReducer;

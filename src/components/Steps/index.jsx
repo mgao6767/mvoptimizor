@@ -1,7 +1,12 @@
 import React, { Component } from "react";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
 import { Steps, Button, message } from "antd";
 import DataParamsInput from "../DataParamsInput";
 import OptimizationParamsInput from "../OptimizationParamsInput";
+import OptimizationOutput from "../OptimizationOutput";
+import { postOptimizationParams } from "../../actions/optimization";
+import store from "../../store";
 import "./style.css";
 
 const Step = Steps.Step;
@@ -17,7 +22,7 @@ const steps = [
   },
   {
     title: "Results",
-    content: "Last-content"
+    content: <OptimizationOutput />
   }
 ];
 
@@ -28,9 +33,20 @@ class StepProgress extends Component {
       current: 0
     };
   }
+  sendOptParamsToServer() {
+    //TODO
+    this.props.sendParams(store.getState());
+  }
 
   next() {
     const current = this.state.current + 1;
+    if (current === 2) {
+      if (store.getState()["selectedAssets"].length < 2) {
+        message.error("Need at least two assets!");
+        return;
+      }
+      this.sendOptParamsToServer();
+    }
     this.setState({ current });
   }
 
@@ -61,7 +77,12 @@ class StepProgress extends Component {
             </Button>
           )}
           {current === steps.length - 2 && (
-            <Button type="primary" onClick={() => this.next()}>
+            <Button
+              type="primary"
+              onClick={() => {
+                this.next();
+              }}
+            >
               Start
             </Button>
           )}
@@ -79,4 +100,13 @@ class StepProgress extends Component {
   }
 }
 
-export default StepProgress;
+const mapDispatchToProps = dispatch => {
+  return {
+    sendParams: bindActionCreators(postOptimizationParams, dispatch)
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(StepProgress);

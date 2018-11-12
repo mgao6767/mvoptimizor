@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { DatePicker } from "antd";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import store from "../../store";
 import { updateDateRange } from "../../actions/updateDateRange";
 import moment from "moment";
 
@@ -50,7 +49,6 @@ class DateRangePicker extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(store.getState());
   return { start_date: state.dateRange[0], end_date: state.dateRange[1] };
 }
 

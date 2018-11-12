@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import "./App.css";
+import { Row, Col, Affix } from "antd";
 import "antd/dist/antd.css";
 import StepProgress from "./components/Steps";
-import MeanVarianceChart from "./components/MeanVarianceChart";
+// import MeanVarianceChart from "./components/MeanVarianceChart";
+import OptResults from "./components/Tabs";
 
 class App extends Component {
   // constructor(props) {
@@ -23,13 +25,20 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>MVOptimizor</h1>
-        <div className="Input">
-          <StepProgress />
-        </div>
-        <div className="Output">
-          <MeanVarianceChart />
-        </div>
+        <Row gutter={10}>
+          <Col className="gutter-row" span={10}>
+            <div className="gutter-box">
+              <Affix offsetTop={0}>
+                <StepProgress />
+              </Affix>
+            </div>
+          </Col>
+          <Col className="gutter-row" span={14}>
+            <div className="gutter-box Output">
+              <OptResults />
+            </div>
+          </Col>
+        </Row>
       </div>
     );
   }

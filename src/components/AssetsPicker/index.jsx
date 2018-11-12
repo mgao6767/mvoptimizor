@@ -10,7 +10,7 @@ const Option = Select.Option;
 class AssetsPicker extends Component {
   constructor(props) {
     super(props);
-    this.fetchTickers = debounce(this.fetchTickers, 300);
+    this.fetchTickers = debounce(this.fetchTickers, 200);
     this.state = {
       data: [],
       value: this.props.value,
@@ -19,7 +19,9 @@ class AssetsPicker extends Component {
   }
 
   fetchTickers = ticker => {
-    if (ticker.length <= 1) return;
+    const oldLength = ticker.length;
+    ticker = ticker.replace(/[^a-zA-Z0-9]/g, "");
+    if ((ticker.length <= 1) | (ticker.length !== oldLength)) return;
     // console.log("fetching asset", ticker);
     this.setState({ data: [], fetching: true });
     fetch(`http://localhost:5000/assets/ticker=${ticker}`)

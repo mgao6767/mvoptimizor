@@ -1,6 +1,6 @@
 import { RECEIVED_OPTIMIZATION_RESULTS } from "../../constants/action-types";
 
-const initialState = null;
+const initialState = [];
 
 export default function receivedOptimizationResults(
   state = initialState,
@@ -8,7 +8,7 @@ export default function receivedOptimizationResults(
 ) {
   switch (type) {
     case RECEIVED_OPTIMIZATION_RESULTS:
-      return payload;
+      return state.concat(payload);
     default:
       return state;
   }

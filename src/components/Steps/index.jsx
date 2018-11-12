@@ -40,6 +40,7 @@ class StepProgress extends Component {
 
   next() {
     const current = this.state.current + 1;
+    this.setState({ current });
     if (current === 2) {
       if (store.getState()["selectedAssets"].length < 2) {
         message.error("Need at least two assets!");
@@ -47,12 +48,15 @@ class StepProgress extends Component {
       }
       this.sendOptParamsToServer();
     }
-    this.setState({ current });
   }
 
   prev() {
     const current = this.state.current - 1;
     this.setState({ current });
+  }
+
+  begining() {
+    this.setState({ current: 0 });
   }
 
   render() {
@@ -87,10 +91,7 @@ class StepProgress extends Component {
             </Button>
           )}
           {current === steps.length - 1 && (
-            <Button
-              type="primary"
-              onClick={() => message.success("Processing complete!")}
-            >
+            <Button type="primary" onClick={() => this.begining()}>
               Done
             </Button>
           )}

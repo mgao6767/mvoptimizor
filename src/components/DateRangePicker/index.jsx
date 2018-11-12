@@ -39,6 +39,14 @@ class DateRangePicker extends Component {
           "Past 6 Months": [
             this.props.end_date.clone().subtract(6, "months"),
             this.props.end_date
+          ],
+          "Past 1 Year": [
+            this.props.end_date.clone().subtract(1, "year"),
+            this.props.end_date
+          ],
+          "Past 3 Years": [
+            this.props.end_date.clone().subtract(3, "years"),
+            this.props.end_date
           ]
         }}
         defaultValue={[this.props.start_date, this.props.end_date]}

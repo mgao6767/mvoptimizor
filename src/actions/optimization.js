@@ -12,10 +12,12 @@ export const postOptimizationParams = params => {
       start_date: params["dateRange"][0],
       end_date: params["dateRange"][1],
       tickers: params["selectedAssets"],
-      long_only: params["longOnly"]
+      long_only: params["longOnly"],
+      expected_return_method: params["expectedReturnMethod"],
+      cov: params["covarianceMethod"]
     })
   };
-  console.log("Optimization Parameters:", init);
+  // console.log("Optimization Parameters:", init);
   return dispatch => {
     dispatch({
       type: WAITING_OPTIMIZATION_RESULTS,
@@ -24,17 +26,17 @@ export const postOptimizationParams = params => {
     fetch("http://localhost:5000/optimization", init)
       .then(res => res.json())
       .then(data => {
-        console.log("Optimization Results:", data);
+        // console.log("Optimization Results:", data);
         dispatch({
           type: RECEIVED_OPTIMIZATION_RESULTS,
           payload: data
         });
       })
-      .then(
+      .then(() => {
         dispatch({
           type: WAITING_OPTIMIZATION_RESULTS,
           payload: false
-        })
-      );
+        });
+      });
   };
 };

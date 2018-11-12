@@ -25,15 +25,15 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Row gutter={10}>
-          <Col className="gutter-row" span={10}>
+        <Row gutter={50}>
+          <Col className="gutter-row" span={6}>
             <div className="gutter-box">
               <Affix offsetTop={0}>
                 <StepProgress />
               </Affix>
             </div>
           </Col>
-          <Col className="gutter-row" span={14}>
+          <Col className="gutter-row" span={18}>
             <div className="gutter-box Output">
               <OptResults />
             </div>

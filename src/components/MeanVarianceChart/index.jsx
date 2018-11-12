@@ -33,10 +33,9 @@ export class MeanVarianceChart extends Component {
         yaxis: {
           title: "Expected Return (% p.a.)",
           range: [Math.min(...y) - 5, Math.max(...y) + 5]
-        },
-        width: 1000
+        }
       },
-      frames: [],
+      // frames: [],
       config: { displayModeBar: false }
     };
   }
@@ -57,10 +56,12 @@ export class MeanVarianceChart extends Component {
   render() {
     return (
       <Plot
+        style={{ width: "100%", height: "100%" }}
         data={this.state.data}
         layout={this.state.layout}
         // frames={this.state.frames}
         config={this.state.config}
+        useResizeHandler={true}
         // onInitialized={figure => this.setState(figure)}
         // onUpdate={figure => this.setState(figure)}
       />

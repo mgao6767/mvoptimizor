@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { Select, Spin } from "antd";
 import debounce from "lodash/debounce";
 import { updateSelectedAssets } from "../../actions/updateSelectedAssets";
+import { URL_ASSET_INFO } from "../../constants/urls";
 
 const Option = Select.Option;
 
@@ -24,7 +25,7 @@ class AssetsPicker extends Component {
     if ((ticker.length <= 1) | (ticker.length !== oldLength)) return;
     // console.log("fetching asset", ticker);
     this.setState({ data: [], fetching: true });
-    fetch(`http://localhost:5000/assets/ticker=${ticker}`)
+    fetch(`${URL_ASSET_INFO}${ticker}`)
       .then(response => response.json())
       .then(body => {
         this.setState({ data: Object.values(body), fetching: false });
@@ -60,7 +61,7 @@ class AssetsPicker extends Component {
         {data.map(d => (
           <Option key={d.Ticker} value={d.Ticker}>{`${d.Ticker} - ${
             d.Name
-          }`}</Option>
+            }`}</Option>
         ))}
       </Select>
     );

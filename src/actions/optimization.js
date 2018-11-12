@@ -2,6 +2,7 @@ import {
   WAITING_OPTIMIZATION_RESULTS,
   RECEIVED_OPTIMIZATION_RESULTS
 } from "../constants/action-types";
+import { URL_OPTIMIZATION } from "../constants/urls";
 
 export const postOptimizationParams = params => {
   const init = {
@@ -23,7 +24,7 @@ export const postOptimizationParams = params => {
       type: WAITING_OPTIMIZATION_RESULTS,
       payload: true
     });
-    fetch("http://localhost:5000/optimization", init)
+    fetch(URL_OPTIMIZATION, init)
       .then(res => res.json())
       .then(data => {
         // console.log("Optimization Results:", data);

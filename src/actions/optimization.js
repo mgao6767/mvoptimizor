@@ -16,7 +16,8 @@ export const postOptimizationParams = params => {
       tickers: params["selectedAssets"],
       long_only: params["longOnly"],
       expected_return_method: params["expectedReturnMethod"],
-      cov: params["covarianceMethod"]
+      cov: params["covarianceMethod"],
+      freq: params["freq"]
     })
   };
   // console.log("Optimization Parameters:", init);

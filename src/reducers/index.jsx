@@ -8,6 +8,7 @@ import updateExpectedReturnMethod from "./updateExpectedReturnMethod";
 import updateCovarianceMethod from "./updateCovarianceMethod";
 import waitingOptimizationResults from "./optimization/waitingResults";
 import receivedOptimizationResults from "./optimization/receivedResults";
+import optimizationError from "./optimization/optimizationError";
 
 const rootReducer = combineReducers({
   dateRange: updateDateRange,
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
   expectedReturnMethod: updateExpectedReturnMethod,
   covarianceMethod: updateCovarianceMethod,
   waitingResults: waitingOptimizationResults,
-  optimizationResults: receivedOptimizationResults
+  optimizationResults: receivedOptimizationResults,
+  optimizationError: optimizationError
 });
 
 export default rootReducer;

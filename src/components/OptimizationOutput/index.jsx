@@ -1,8 +1,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Spin, List } from "antd";
+import { Spin, List, message } from "antd";
 
 class OptimizationOutput extends Component {
+  state = { msgShown: false };
+  status = () => {
+    if (this.props.optimizationError && !this.state.msgShown) {
+      message.error("Optimization failed!");
+      this.setState({ msgShown: true });
+    }
+    return this.props.loading;
+  };
   render() {
     const data = [
       {
@@ -37,7 +45,7 @@ class OptimizationOutput extends Component {
     return (
       <div className="optimization-output">
         <Spin
-          spinning={this.props.loading}
+          spinning={this.status()}
           size="large"
           style={{ padding: "100px" }}
         >
@@ -63,7 +71,8 @@ class OptimizationOutput extends Component {
 
 const mapStateToProps = state => ({
   loading: state.waitingResults,
-  allState: state
+  allState: state,
+  optimizationError: state.optimizationError
 });
 
 export default connect(mapStateToProps)(OptimizationOutput);

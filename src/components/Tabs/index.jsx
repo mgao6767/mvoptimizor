@@ -81,6 +81,8 @@ class OptResults extends Component {
     if (lastIndex >= 0 && activeKey === targetKey) {
       activeKey = panes[lastIndex].key;
     }
+    if (lastIndex < 0 && this.state.panes.length > 1)
+      activeKey = this.state.panes[1].key;
     this.setState({ panes, activeKey });
   };
 

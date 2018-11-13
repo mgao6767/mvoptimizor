@@ -25,6 +25,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <h1>Mean-Variance Optimization</h1>
         <Row gutter={50}>
           <Col className="gutter-row" span={6}>
             <div className="gutter-box">

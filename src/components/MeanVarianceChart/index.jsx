@@ -20,7 +20,32 @@ export class MeanVarianceChart extends Component {
           y: y,
           type: "scatter",
           mode: "lines+points",
-          name: "Efficient Frontier"
+          name: "Frontier"
+        },
+        {
+          x: this.props.result["params"]["assets standard deviation"].map(x =>
+            parseFloat((parseFloat(x) * 100).toFixed(2))
+          ),
+          y: this.props.result["params"]["assets expected return"].map(x =>
+            parseFloat((parseFloat(x) * 100).toFixed(2))
+          ),
+          text: this.props.result["params"]["assets"],
+          type: "scatter",
+          mode: "markers",
+          name: "Assets",
+          marker: { size: 10 }
+        },
+        {
+          x: [this.props.result["gmvp"]["standard deviation"]].map(x =>
+            parseFloat((parseFloat(x) * 100).toFixed(2))
+          ),
+          y: [this.props.result["gmvp"]["expected return"]].map(x =>
+            parseFloat((parseFloat(x) * 100).toFixed(2))
+          ),
+          type: "scatter",
+          mode: "markers",
+          name: "GMVP",
+          marker: { size: 12 }
         }
       ],
       layout: {
@@ -62,8 +87,8 @@ export class MeanVarianceChart extends Component {
         // frames={this.state.frames}
         config={this.state.config}
         useResizeHandler={true}
-        // onInitialized={figure => this.setState(figure)}
-        // onUpdate={figure => this.setState(figure)}
+        onInitialized={figure => this.setState(figure)}
+        onUpdate={figure => this.setState(figure)}
       />
     );
   }

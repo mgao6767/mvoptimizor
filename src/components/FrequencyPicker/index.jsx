@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Radio } from "antd";
+import { Radio, Tooltip } from "antd";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { updateFrequency } from "../../actions/updateFrequency";
@@ -20,7 +20,11 @@ class FrequencyPicker extends Component {
         <Radio.Button value="daily">Daily</Radio.Button>
         <Radio.Button value="weekly">Weekly</Radio.Button>
         <Radio.Button value="monthly">Monthly</Radio.Button>
-        <Radio.Button value="annual">Annual</Radio.Button>
+        <Tooltip placement="bottomLeft" title="Terrible Idea">
+          <Radio.Button value="annual" disabled={true}>
+            Annual
+          </Radio.Button>
+        </Tooltip>
       </Radio.Group>
     );
   }

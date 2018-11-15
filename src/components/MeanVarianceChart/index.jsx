@@ -19,8 +19,9 @@ export class MeanVarianceChart extends Component {
           x: x,
           y: y,
           type: "scatter",
-          mode: "lines+points",
-          name: "Frontier"
+          mode: "lines+markers",
+          name: "Frontier",
+          marker: { size: 3 }
         },
         {
           x: this.props.result["params"]["assets standard deviation"].map(x =>
@@ -58,7 +59,8 @@ export class MeanVarianceChart extends Component {
         yaxis: {
           title: "Expected Return (% p.a.)",
           range: [Math.min(...y) - 5, Math.max(...y) + 5]
-        }
+        },
+        hovermode: "y"
       },
       // frames: [],
       config: { displayModeBar: false }
@@ -93,11 +95,14 @@ export class MeanVarianceChart extends Component {
         style={{ width: "100%", height: "100%" }}
         data={this.state.data}
         layout={this.state.layout}
-        // frames={this.state.frames}
         config={this.state.config}
-        useResizeHandler={true}
-        onInitialized={figure => this.setState(figure)}
-        onUpdate={figure => this.setState(figure)}
+        // useResizeHandler={true}
+        onInitialized={figure => {
+          this.setState(figure);
+        }}
+        onUpdate={figure => {
+          this.setState(figure);
+        }}
         onHover={this.handleHover}
       />
     );

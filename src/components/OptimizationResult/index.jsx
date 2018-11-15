@@ -29,9 +29,9 @@ class OptimizationResult extends Component {
   render() {
     return (
       <div className="optimization-result">
-        <Row gutter={10} style={{ marginBottom: 10 }}>
+        <Row gutter={10}>
           <Col className="gutter-row" span={18}>
-            <div className="gutter-box">
+            <div className="gutter-box" style={{ marginBottom: 10 }}>
               <Card title="Return-Risk Chart" hoverable={true}>
                 <MeanVarianceChart
                   result={this.props.result}
@@ -39,16 +39,7 @@ class OptimizationResult extends Component {
                 />
               </Card>
             </div>
-          </Col>
-          <Col className="gutter-row" span={6}>
-            <div className="gutter-box">
-              <SummaryCard allState={this.props.allState} />
-            </div>
-          </Col>
-        </Row>
-        <Row gutter={10}>
-          <Col className="gutter-row" span={18}>
-            <div className="gutter-box">
+            <div className="gutter-box" style={{ marginBottom: 10 }}>
               <Card title="Portfolio Position" hoverable={true}>
                 <Row gutter={5}>
                   <Col className="gutter-row" span={12}>
@@ -84,7 +75,9 @@ class OptimizationResult extends Component {
             </div>
           </Col>
           <Col className="gutter-row" span={6}>
-            <div className="gutter-box" />
+            <div className="gutter-box">
+              <SummaryCard allState={this.props.allState} />
+            </div>
           </Col>
         </Row>
       </div>

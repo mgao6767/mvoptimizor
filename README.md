@@ -4,7 +4,7 @@ An easy-to-use portfolio optimization tool.
 
 [Demo](https://adrian-gao.com/optimization)
 
-Developed by [Adrian Gao](https://adrian-gao.com) | Version 0.0.1
+Developed by [Adrian Gao](https://adrian-gao.com) | Version 0.1.1
 
 **Note**: For use of University of Sydney students only due to data license (education).
 

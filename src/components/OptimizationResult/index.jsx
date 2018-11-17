@@ -1,8 +1,11 @@
 import React, { Component } from "react";
-import { Row, Col, Card } from "antd";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { Row, Col, Card, Radio } from "antd";
 import MeanVarianceChart from "../MeanVarianceChart";
 import SummaryCard from "../OptimizationOutput/SummaryCard";
 import PortfolioPositionChart from "../PortfolioPositionChart";
+import { updatePortfolioSelectionMethod } from "../../actions/updatePortfolioSelectionMethod";
 
 class OptimizationResult extends Component {
   constructor(props) {
@@ -10,11 +13,12 @@ class OptimizationResult extends Component {
     this.state = {
       activePortfolioID: 0,
       weights: Object.values(this.props.result["portfolios"][0]["weights"]),
-      assets: Object.keys(this.props.result["portfolios"][0]["weights"])
+      assets: Object.keys(this.props.result["portfolios"][0]["weights"]),
+      portfolioSelectionMethod: "hover"
     };
   }
-  onPortfolioSelected = activePortfolioID => {
-    // console.log("received port id", activePortfolioID);
+  onPortfolioSelectedHover = activePortfolioID => {
+    if (this.state.portfolioSelectionMethod !== "hover") return;
     this.setState({
       activePortfolioID,
       weights: Object.values(
@@ -24,7 +28,25 @@ class OptimizationResult extends Component {
         this.props.result["portfolios"][activePortfolioID]["weights"]
       )
     });
-    // console.log("port", this.state.weights);
+  };
+  onPortfolioSelectedClick = activePortfolioID => {
+    if (this.state.portfolioSelectionMethod !== "click") return;
+    this.setState({
+      activePortfolioID,
+      weights: Object.values(
+        this.props.result["portfolios"][activePortfolioID]["weights"]
+      ),
+      assets: Object.keys(
+        this.props.result["portfolios"][activePortfolioID]["weights"]
+      )
+    });
+  };
+  onPortfolioSelectionMethodChange = e => {
+    e.preventDefault();
+    this.setState({
+      portfolioSelectionMethod: e.target.value
+    });
+    this.props.update(e.target.value);
   };
   render() {
     return (
@@ -35,12 +57,26 @@ class OptimizationResult extends Component {
               <Card title="Return-Risk Chart" hoverable={true}>
                 <MeanVarianceChart
                   result={this.props.result}
-                  onPortfolioSelected={this.onPortfolioSelected}
+                  onPortfolioSelectedHover={this.onPortfolioSelectedHover}
+                  onPortfolioSelectedClick={this.onPortfolioSelectedClick}
                 />
               </Card>
             </div>
             <div className="gutter-box" style={{ marginBottom: 10 }}>
-              <Card title="Portfolio Position" hoverable={true}>
+              <Card
+                title="Portfolio Position"
+                hoverable={true}
+                extra={
+                  <Radio.Group
+                    defaultValue={this.state.portfolioSelectionMethod}
+                    buttonStyle="solid"
+                    onChange={this.onPortfolioSelectionMethodChange}
+                  >
+                    <Radio.Button value="hover">Hover</Radio.Button>
+                    <Radio.Button value="click">Click</Radio.Button>
+                  </Radio.Group>
+                }
+              >
                 <Row gutter={5}>
                   <Col className="gutter-row" span={12}>
                     <div className="gutter-box">
@@ -85,4 +121,13 @@ class OptimizationResult extends Component {
   }
 }
 
-export default OptimizationResult;
+const mapDispatchToProps = dispatch => {
+  return {
+    update: bindActionCreators(updatePortfolioSelectionMethod, dispatch)
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(OptimizationResult);

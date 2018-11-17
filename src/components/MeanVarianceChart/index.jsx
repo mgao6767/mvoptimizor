@@ -84,7 +84,17 @@ export class MeanVarianceChart extends Component {
       if (element.curveNumber === 0) {
         const id = element.pointIndex;
         // console.log(this.props.result["portfolios"][id]);
-        this.props.onPortfolioSelected(id);
+        this.props.onPortfolioSelectedHover(id);
+      }
+    });
+  };
+
+  handlClick = e => {
+    e.points.forEach(element => {
+      if (element.curveNumber === 0) {
+        const id = element.pointIndex;
+        // console.log(this.props.result["portfolios"][id]);
+        this.props.onPortfolioSelectedClick(id);
       }
     });
   };
@@ -104,6 +114,7 @@ export class MeanVarianceChart extends Component {
           this.setState(figure);
         }}
         onHover={this.handleHover}
+        onClick={this.handlClick}
       />
     );
   }

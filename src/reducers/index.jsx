@@ -9,6 +9,7 @@ import updateCovarianceMethod from "./updateCovarianceMethod";
 import waitingOptimizationResults from "./optimization/waitingResults";
 import receivedOptimizationResults from "./optimization/receivedResults";
 import optimizationError from "./optimization/optimizationError";
+import updatePortfolioSelectionMethod from "./updatePortfolioSelectionMethod";
 
 const rootReducer = combineReducers({
   dateRange: updateDateRange,
@@ -20,7 +21,8 @@ const rootReducer = combineReducers({
   covarianceMethod: updateCovarianceMethod,
   waitingResults: waitingOptimizationResults,
   optimizationResults: receivedOptimizationResults,
-  optimizationError: optimizationError
+  optimizationError: optimizationError,
+  portfolioSelectionMethod: updatePortfolioSelectionMethod
 });
 
 export default rootReducer;

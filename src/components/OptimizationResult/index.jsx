@@ -54,18 +54,8 @@ class OptimizationResult extends Component {
         <Row gutter={10}>
           <Col className="gutter-row" span={18}>
             <div className="gutter-box" style={{ marginBottom: 10 }}>
-              <Card title="Return-Risk Chart" hoverable={true}>
-                <MeanVarianceChart
-                  result={this.props.result}
-                  activePortfolioID={this.state.activePortfolioID}
-                  onPortfolioSelectedHover={this.onPortfolioSelectedHover}
-                  onPortfolioSelectedClick={this.onPortfolioSelectedClick}
-                />
-              </Card>
-            </div>
-            <div className="gutter-box" style={{ marginBottom: 10 }}>
               <Card
-                title="Portfolio Position"
+                title="Return-Risk Chart"
                 hoverable={true}
                 extra={
                   <Radio.Group
@@ -78,6 +68,16 @@ class OptimizationResult extends Component {
                   </Radio.Group>
                 }
               >
+                <MeanVarianceChart
+                  result={this.props.result}
+                  activePortfolioID={this.state.activePortfolioID}
+                  onPortfolioSelectedHover={this.onPortfolioSelectedHover}
+                  onPortfolioSelectedClick={this.onPortfolioSelectedClick}
+                />
+              </Card>
+            </div>
+            <div className="gutter-box" style={{ marginBottom: 10 }}>
+              <Card title="Portfolio Position" hoverable={true}>
                 <Row gutter={5}>
                   <Col className="gutter-row" span={12}>
                     <div className="gutter-box">

@@ -57,6 +57,7 @@ class OptimizationResult extends Component {
               <Card title="Return-Risk Chart" hoverable={true}>
                 <MeanVarianceChart
                   result={this.props.result}
+                  activePortfolioID={this.state.activePortfolioID}
                   onPortfolioSelectedHover={this.onPortfolioSelectedHover}
                   onPortfolioSelectedClick={this.onPortfolioSelectedClick}
                 />

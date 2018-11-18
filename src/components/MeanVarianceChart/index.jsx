@@ -14,6 +14,9 @@ export class MeanVarianceChart extends Component {
       : []
     ).map(x => parseFloat((parseFloat(x) * 100).toFixed(2)));
     this.state = {
+      activePortfolioID: this.props.activePortfolioID,
+      x,
+      y,
       data: [
         {
           x: x,
@@ -22,6 +25,14 @@ export class MeanVarianceChart extends Component {
           mode: "lines+markers",
           name: "Frontier",
           marker: { size: 3 }
+        },
+        {
+          x: [x[this.props.activePortfolioID]],
+          y: [y[this.props.activePortfolioID]],
+          type: "scatter",
+          mode: "markers",
+          name: "Selected",
+          marker: { size: 12 }
         },
         {
           x: this.props.result["params"]["assets standard deviation"].map(x =>
@@ -67,17 +78,21 @@ export class MeanVarianceChart extends Component {
     };
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   this.setState({
-  //     data: [
-  //       {
-  //         x: nextProps.latestResult["standard deviation"],
-  //         y: nextProps.latestResult["expected return"],
-  //         type: "scatter",
-  //         mode: "lines+points"
-  //       }
-  //     ]
-  //   });
+  componentWillReceiveProps(nextProps) {
+    let data = { ...this.state.data };
+    data[1] = {
+      x: [this.state.x[nextProps.activePortfolioID]],
+      y: [this.state.y[nextProps.activePortfolioID]],
+      type: "scatter",
+      mode: "markers",
+      name: "Selected",
+      marker: { size: 12 }
+    };
+    this.setState({
+      activePortfolioID: nextProps.activePortfolioID,
+      data: Object.values(data)
+    });
+  }
 
   handleHover = e => {
     e.points.forEach(element => {
@@ -107,12 +122,12 @@ export class MeanVarianceChart extends Component {
         layout={this.state.layout}
         config={this.state.config}
         // useResizeHandler={true}
-        onInitialized={figure => {
-          this.setState(figure);
-        }}
-        onUpdate={figure => {
-          this.setState(figure);
-        }}
+        // onInitialized={figure => {
+        //   this.setState(figure);
+        // }}
+        // onUpdate={figure => {
+        //   this.setState(figure);
+        // }}
         onHover={this.handleHover}
         onClick={this.handlClick}
       />

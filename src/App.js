@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ReactGA from "react-ga";
 import "./App.css";
 import { Row, Col, Affix } from "antd";
 import "antd/dist/antd.css";
@@ -15,6 +16,9 @@ Developed by [Adrian Gao](https://adrian-gao.com) | Version 0.1.2
 
 **Disclaimer**: The analyses of this app are performed programmatically and do not represent investment opinions. Seek a professional financial advisor for investment advices.
 `;
+
+ReactGA.initialize("UA-114057186-1");
+ReactGA.pageview("/optimization");
 
 class App extends Component {
   // constructor(props) {

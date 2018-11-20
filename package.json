@@ -1,6 +1,6 @@
 {
   "name": "mvo",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "homepage": "https://adrian-gao.com/optimization",
   "dependencies": {
     "antd": "^3.10.4",

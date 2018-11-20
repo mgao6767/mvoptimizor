@@ -8,8 +8,8 @@ import { URL_RETURNS } from "../constants/urls";
 export const getAssetReturn = params => {
   let body = {
     json: true,
-    start_date: params["dateRange"][0],
-    end_date: params["dateRange"][1],
+    start_date: params["startDate"],
+    end_date: params["endDate"],
     tickers: params["tickers"],
     freq: params["freq"]
   };
@@ -21,6 +21,7 @@ export const getAssetReturn = params => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body)
   };
+  console.log(init);
   return dispatch => {
     dispatch({
       type: WAITING_ASSET_RETURN_RESULTS,

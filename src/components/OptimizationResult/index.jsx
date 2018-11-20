@@ -5,6 +5,7 @@ import { Row, Col, Card, Radio } from "antd";
 import MeanVarianceChart from "../MeanVarianceChart";
 import SummaryCard from "../OptimizationOutput/SummaryCard";
 import PortfolioPositionChart from "../PortfolioPositionChart";
+import PriceHistoryChart from "../PriceHistoryChart";
 import { updatePortfolioSelectionMethod } from "../../actions/updatePortfolioSelectionMethod";
 
 class OptimizationResult extends Component {
@@ -77,7 +78,7 @@ class OptimizationResult extends Component {
               </Card>
             </div>
             <div className="gutter-box" style={{ marginBottom: 10 }}>
-              <Card title="Portfolio Position" hoverable={true}>
+              <Card title="Portfolio Position & Performance" hoverable={true}>
                 <Row gutter={5}>
                   <Col className="gutter-row" span={12}>
                     <div className="gutter-box">
@@ -108,8 +109,46 @@ class OptimizationResult extends Component {
                     </div>
                   </Col>
                 </Row>
+                <Row gutter={5}>
+                  <Col className="gutter-row" span={24}>
+                    <div className="gutter-box">
+                      <PriceHistoryChart
+                        // startDate={this.props.allState["dateRange"][0]}
+                        // endDate={this.props.allState["dateRange"][1]}
+                        weights={
+                          this.props.result["portfolios"][
+                            this.state.activePortfolioID
+                          ]["weights"]
+                        }
+                        tickers={this.state.assets}
+                        params={this.props.allState}
+                      />
+                    </div>
+                  </Col>
+                </Row>
               </Card>
             </div>
+            {/* <div className="gutter-box" style={{ marginBottom: 10 }}>
+              <Card title="Backtest" hoverable={true}>
+                <Row gutter={5}>
+                  <Col className="gutter-row" span={24}>
+                    <div className="gutter-box">
+                      <PriceHistoryChart
+                        // startDate={this.props.allState["dateRange"][0]}
+                        // endDate={this.props.allState["dateRange"][1]}
+                        weights={
+                          this.props.result["portfolios"][
+                            this.state.activePortfolioID
+                          ]["weights"]
+                        }
+                        tickers={this.state.assets}
+                        params={this.props.allState}
+                      />
+                    </div>
+                  </Col>
+                </Row>
+              </Card>
+            </div> */}
           </Col>
           <Col className="gutter-row" span={6}>
             <div className="gutter-box">
